@@ -25,12 +25,13 @@ SECRET_KEY = 'django-insecure-pv%e*4567$3qt5ebqtflq55%*(r-hl)ddpx5p)8(-co7e4pty5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["13.114.167.90", "127.0.0.1"]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -75,8 +76,14 @@ WSGI_APPLICATION = 'testPage.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3'
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sample',
+        'USER': 'lucas',
+        'PASSWORD': 'Qwertyuiop',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
