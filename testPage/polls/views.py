@@ -6,7 +6,7 @@ from django.db import IntegrityError
 from django.http import HttpResponse
 
 # Create your views here.
-def index(request):
+def indexfunc(request):
     return HttpResponse("Hello, World. You're at the polls index.")
     
 def signupfunc(request):
