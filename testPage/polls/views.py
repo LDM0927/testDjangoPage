@@ -7,7 +7,10 @@ from django.http import HttpResponse
 
 # Create your views here.
 def indexfunc(request):
-    return HttpResponse("Hello, World. You're at the polls index.")
+    if request.user.is_authenticated:
+        return redirect('userpage')
+    else:
+        return render(request, 'index.html', {'message': 'Hello, World!!!'})
     
 def signupfunc(request):
     if request.method == "POST":
@@ -15,10 +18,9 @@ def signupfunc(request):
         password = request.POST['password']
         try:
             user = User.objects.create_user(username, '', password)
-            return render(request, 'signup.html', {})
+            return redirect('login')
         except IntegrityError:
             return render(request, 'signup.html', {'error': "既登録済"})
-    
     return render(request, 'signup.html')
 
 def loginfunc(request):
@@ -35,8 +37,8 @@ def loginfunc(request):
 
 @login_required
 def userpagefunc(request):
-    username = request.user.get_username()
-    return HttpResponse("Hello, %s!!!" %  username)
+    username = 'Hello, ' + request.user.get_username() + '!!!'
+    return render(request, 'userpage.html', {'message': username})
 
 def logoutfunc(request):
     logout(request)
