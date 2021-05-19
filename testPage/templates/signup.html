@@ -7,13 +7,49 @@
 
 {% block content %}
 <body class="text-center">
-    <form class="form-signin" method="POST"> {% csrf_token %}
+    <form class="form-signin" style="max-width: 500px" method="POST"> {% csrf_token %}
         <img class="mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal">サインインする</h1>
-        <label for="inputEmail" class="visually-hidden">メールアドレス</label>
-        <input type="text" id="inputEmail" class="form-control" placeholder="ユーザーネーム" name='username' required autofocus>
-        <label for="inputPassword" class="visually-hidden">パスワード</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="パスワード" name='password' required>
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" name="firstname" required="">
+                <div class="invalid-feedback">
+                    Valid first name is required.
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" name="lastname" required="">
+                <div class="invalid-feedback">
+                    Valid last name is required.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" id="username" placeholder="Username" name="username" required="">
+                <div class="invalid-feedback">
+                    Your username is required.
+                </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email">
+                <div class="invalid-feedback">
+                    Please enter a valid email address for shipping updates.
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="" name='password' required="">
+                <div class="invalid-feedback">
+                    Please enter a valid email address for shipping updates.
+                </div>
+            </div>
+        </div>
         <button class="w-100 btn btn-lg btn-primary" type="submit">サインイン</button>
         <p class="mt-5 mb-3 text-muted">&copy; 2017-2021</p>
     </form>

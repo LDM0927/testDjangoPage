@@ -14,10 +14,16 @@ def indexfunc(request):
     
 def signupfunc(request):
     if request.method == "POST":
+        firstname = request.POST['firstname']
+        lastname = request.POST['lastname']
         username = request.POST['username']
+        email = request.POST['email']
         password = request.POST['password']
         try:
-            user = User.objects.create_user(username, '', password)
+            user = User.objects.create_user(username, email, password)
+            user.first_name = firstname
+            user.last_name = lastname
+            user.save()
             return redirect('login')
         except IntegrityError:
             return render(request, 'signup.html', {'error': "既登録済"})
